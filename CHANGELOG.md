@@ -1,122 +1,206 @@
-# Changelog
+# 📝 Changelog
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
-e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
+e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
 ---
 
-## [1.1.0] - 2026-03-31
+## [1.0.0] - 2026-03-24
+
+### 🎉 Lançamento Inicial
+
+Primeira versão estável do Dashboard Gerencial.
 
 ### ✨ Adicionado
-- **Filtro Dinâmico de Pontos**: Dropdown "Ponto" agora mostra apenas pontos com vendas > 0 do produto selecionado, eliminando pontos irrelevantes e focando a análise
-- **Toggle "Mostrar Todos os Pontos"**: Nova opção na aba Evolução que permite visualizar dados de múltiplos pontos simultaneamente
-- **Gráfico Misto (Barras + Linha)**: Quando o toggle está ativado, o gráfico exibe:
-  - Barras coloridas para cada ponto individual (top 10 por vendas)
-  - Linha roxa tracejada representando o TOTAL geral
-  - Paleta de 10 cores distintas para fácil identificação
-  - Legenda customizada à esquerda com interatividade (click para toggle)
 
-### 🔧 Melhorado
-- **UX da Aba Evolução**: Interface mais intuitiva com indicadores visuais claros do estado do toggle
-- **Performance**: Otimização no cálculo de dados por ponto e período
-- **Legenda Interativa**: Click nos itens da legenda permite mostrar/ocultar datasets individuais
-- **Layout Responsivo**: Gráfico com legenda à esquerda (110px fixo) + área do gráfico flexível
-
-### 📊 Detalhes Técnicos
-- Função `calcularPontosPorPeriodo()` para agrupar vendas por ponto e período
-- Suporte a gráficos mistos (mixed charts) no Chart.js
-- Limitação automática a top 10 pontos para evitar poluição visual
-- Cores com gradientes e opacity 0.8 para melhor contraste
-
----
-
-## [1.0.0] - 2026-03-30
-
-### ✨ Lançamento Inicial
-- Dashboard gerencial HTML/JavaScript completo para análise de vendas e despesas
-- Processamento de 6 planilhas Excel: vendas, dezena, comissao_jb, comissao_le, comissao_bg, aluguel
+**Estrutura Geral:**
 - 4 abas principais: Vendas, Despesas, Comparativo, Evolução
+- Processamento de arquivo Excel (.xlsx) com 6 planilhas
+- Interface responsiva (desktop, tablet, mobile)
+- Sistema de cores inteligente
 
-### 📊 Funcionalidades Principais
+**Aba Vendas:**
+- Análise de faturamento por produto/rota/ponto
+- 4 visualizações: Geral, Por Produto, Por Rota, Por Ponto
+- Filtros dinâmicos (ano, mês, produto, rota, ponto)
+- Cards de métricas principais
+- Tabela detalhada com ordenação
+- Ranking de melhores performances (🥇🥈🥉)
 
-#### Aba Vendas
-- Visualização detalhada de vendas por produto (JB, LE, BG, CN)
-- Filtros por ano, mês, rota e ponto
-- Cards com métricas principais (total, ticket médio, pontos ativos)
-- Tabela detalhada com breakdown por produto
-- Gráfico de distribuição por produto
+**Aba Despesas:**
+- Breakdown de custos: Comissão + Dezena + Aluguel
+- Toggle "Excluir Comissões" para análise sem comissão
+- Cálculo automático de % de custo sobre vendas
+- Sistema de thresholds: Ideal (<25%), Atenção (25-35%), Crítico (>35%)
+- Cards de status com contadores
+- TOP 5 Melhor Custo e TOP 5 Maior Despesa
+- Tabela com cores por status de custo
+- Breakdown detalhado em cards e tabela
 
-#### Aba Despesas
-- Análise de custo percentual (Vendas vs Despesas)
-- Três componentes: Comissão, Dezena, Aluguel
-- Sistema de alertas por faixa (ideal <25%, atenção 25-35%, crítico >35%)
-- Filtros sincronizados com aba Vendas
-- Tabela com breakdown detalhado por componente
+**Aba Comparativo:**
+- Comparação entre dois períodos (A vs B)
+- Toggle Vendas / Despesas
+- Validação: Despesas apenas para períodos ≥ 2026
+- 4 tipos: Geral, Por Produto, Por Rota, Por Ponto
+- Card principal com variação % e status
+- Card "Variação por Componente" (breakdown de despesas)
+- Cards Período A e B com breakdown
+- TOP 5 Quedas e TOP 5 Crescimentos
+- Tabela completa com cores por sinal matemático
+- Filtros dinâmicos contextuais
 
-#### Aba Comparativo
-- Comparação entre dois períodos (Período A vs Período B)
-- Cards de variação total e por componente
-- Análise de crescimento/redução percentual e absoluta
-- Suporte apenas para períodos >= 2026 (dados de despesas disponíveis)
-- Gráfico de barras comparativo
+**Aba Evolução:**
+- Análise temporal com período De → Até
+- Gráfico interativo (Chart.js)
+- Linhas de Vendas e Despesas
+- 5 cards de métricas: Inicial, Final, Variação Total, Pico Máximo, Pico Mínimo
+- Filtros opcionais: Produto, Rota, Ponto
+- Suporte para períodos com/sem despesas
 
-#### Aba Evolução
-- Análise temporal de vendas ao longo de múltiplos meses
-- Seleção de período com range (De → Até)
-- Gráfico de linha mostrando tendência
-- Cards com métricas: período inicial/final, variação %, picos máximo/mínimo
-- Opção de visualizar linha de despesas (quando disponível)
+**Funcionalidades Especiais:**
+- Filtros dinâmicos por contexto
+- Ocultar registros com valor zero
+- Breakdown de componentes de despesas
+- Cálculo automático de % de custo
+- Sistema de cores por sinal (negativo=vermelho, positivo=verde)
+- Formatação monetária completa (sem abreviação)
+- Ordem cronológica de meses
 
-### 🔧 Características Técnicas
-- Single-page application (SPA) em HTML/JavaScript puro
-- Chart.js para visualizações
-- ExcelJS para leitura de planilhas
-- Processamento client-side (sem backend)
-- Sistema de cache para performance
-- Validações robustas (GUARDA pattern)
+**Regras de Negócio:**
+- Produtos: JB, LE, BG, CN
+- CN nunca tem comissão
+- Código formato: RRRRPP (4 dígitos rota + 2 dígitos ponto)
+- Aluguel: custo fixo, formato híbrido (com/sem data)
+- Thresholds de custo configurados
 
-### 🎨 Design
-- Interface responsiva com Tailwind CSS
-- Tema roxo (#8b5cf6) como cor primária
-- Sistema de cores semântico (verde=positivo, vermelho=negativo)
-- Cards informativos com ícones
-- Feedback visual claro (loading, erros, avisos)
+**Exportação:**
+- PDF via impressão nativa (window.print)
+- Suporte a html2canvas (download secundário)
+- Lazy loading para performance
 
-### 📋 Regras de Negócio
-- Formato de código: RRRRPP (4 dígitos rota + 2 dígitos ponto)
-- Produto CN (Caça-Níquel) nunca tem comissão
-- Despesas disponíveis apenas a partir de jan/2026
-- Aluguel suporta formato híbrido (com/sem coluna de data)
-- Chave única para despesas: `codigo-mes-ano`
+**Validações e Segurança:**
+- Validação de state e dados antes de processar
+- Try/catch em operações críticas
+- Guardas robustas para evitar erros
+- Fallbacks para dados ausentes
+- 100% client-side (sem backend)
 
-### 🐛 Correções Importantes
-- **Bug Comparativo**: Período < 2026 não trava mais a interface - filtros permanecem visíveis
-- **Cores por Sinal Matemático**: Negativo = vermelho, positivo = verde (não semântica de negócio)
-- **Card Variação Total**: Mostra sinal "-" em vendas negativas com cores corretas
-- **Cards Período A/B**: Incluem breakdown por componente (Comissão, Dezena, Aluguel)
-- **Layout Comparativo**: "Variação por Componente" reposicionado entre cards de período
+### 🐛 Corrigido
+
+**Bug Crítico - Travamento ao Selecionar Período <2026:**
+- **Problema:** Dashboard travava completamente ao selecionar período anterior a 2026 em modo Despesas
+- **Causa:** Validação mostrava aviso mas continuava executando código, causando erro fatal
+- **Solução:** Renderização de filtros mesmo quando mostra aviso, permitindo usuário voltar para 2026
+- **Impacto:** Sistema blindado contra travamentos
+
+**Bug - Rota 2201 no Comparativo:**
+- **Problema:** Filtro de rota sempre resetava para 2201 mesmo selecionando "Todas"
+- **Causa:** Linha de código sobrescrevia state com `rotas[0]` após inicialização
+- **Solução:** Remoção da linha que sobrescrevia, mantendo state inicial `rota: 'todas'`
+
+**Ajustes Visuais - Cores Inconsistentes:**
+- **Problema:** Algumas telas usavam cores por significado, outras por sinal
+- **Solução:** Padronização: cores por sinal matemático (negativo=vermelho, positivo=verde)
+- **Aplicado em:** Comparativo (tabelas, cards), Evolução (Card Variação Total)
+
+**Ajustes Visuais - Card Variação Total:**
+- **Problema:** Faltava sinal "-" em valores negativos de vendas
+- **Solução:** Adicionado sinal explícito e cores corretas
+
+**Ajustes Visuais - Breakdown Cards Período A e B:**
+- **Problema:** Faltavam nomes dos componentes ("Comissão:", "Dezena:", "Aluguel:")
+- **Solução:** Adicionados labels descritivos
+
+**Ajustes Layout - Reposicionamento Card Variação:**
+- **Problema:** Card "Variação por Componente" ficava ao lado do card principal
+- **Solução:** Reorganização: Card principal sozinho no topo, Variação no meio entre períodos A e B
+
+### 🔒 Segurança
+
+- Processamento 100% client-side
+- Nenhum dado enviado para servidor
+- Sem cookies ou tracking
+- Sem dependências com vulnerabilidades conhecidas
 
 ### 📚 Documentação
-- README.md completo com visão geral
+
+- README.md completo com quick start
 - INSTALACAO.md com guia passo a passo
-- ESTRUTURA-DADOS.md com formato das planilhas
-- FUNCIONALIDADES.md com detalhes de cada aba
-- exemplos/README.md com estrutura dos arquivos de exemplo
-- LICENSE (MIT)
-- .gitignore configurado
-- COMO-PUBLICAR-GITHUB.md com instruções de publicação
+- ESTRUTURA-DADOS.md detalhando formato Excel
+- FUNCIONALIDADES.md com todas as features
+- CHANGELOG.md (este arquivo)
+- Template Excel de exemplo
+
+### 🎨 Estilo
+
+- Tailwind CSS via CDN
+- Sistema de cores consistente
+- Interface responsiva
+- Cards com bordas e cores temáticas
+- Emojis para indicadores visuais
+- Font-size dinâmico para valores monetários
+
+### ⚡ Performance
+
+- Lazy loading de bibliotecas PDF
+- Caching de dados em memória
+- Renderização sob demanda
+- Validações otimizadas
 
 ---
 
-## Legenda de Tipos de Mudança
+## [Não Lançado] - Planejado
 
-- **✨ Adicionado**: para novas funcionalidades
-- **🔧 Melhorado**: para mudanças em funcionalidades existentes
-- **🐛 Corrigido**: para correção de bugs
-- **🗑️ Removido**: para funcionalidades removidas
-- **⚠️ Descontinuado**: para funcionalidades que serão removidas
-- **🔒 Segurança**: para correções de vulnerabilidades
-- **📚 Documentação**: para mudanças na documentação
-- **📊 Detalhes Técnicos**: para mudanças técnicas internas
+### 🔮 Recursos Futuros Considerados
+
+- [ ] Modo escuro (dark mode)
+- [ ] Exportação para Excel
+- [ ] Mais opções de gráficos
+- [ ] Filtros salvos (favoritos)
+- [ ] Comparação de múltiplos períodos (A vs B vs C)
+- [ ] Dashboard personalizável (drag and drop)
+- [ ] Alertas automáticos (email/notificação)
+- [ ] Histórico de arquivos carregados
+- [ ] Anotações em períodos específicos
+- [ ] Metas e objetivos configuráveis
+
+---
+
+## Tipos de Mudanças
+
+- **Adicionado** para novas funcionalidades
+- **Modificado** para mudanças em funcionalidades existentes
+- **Depreciado** para funcionalidades que serão removidas
+- **Removido** para funcionalidades removidas
+- **Corrigido** para correção de bugs
+- **Segurança** para vulnerabilidades
+
+---
+
+## Como Atualizar Este Arquivo
+
+Ao fazer mudanças no projeto:
+
+1. Adicione entrada na seção `[Não Lançado]`
+2. Use o tipo correto (Adicionado, Modificado, etc.)
+3. Seja descritivo mas conciso
+4. Inclua contexto quando necessário
+5. Ao lançar nova versão, mova de "Não Lançado" para nova versão com data
+
+**Exemplo:**
+```markdown
+## [Não Lançado]
+
+### Adicionado
+- Novo filtro de intervalo de datas no Comparativo
+
+### Corrigido
+- Bug onde aluguel não aparecia em alguns pontos
+```
+
+---
+
+**Versão Atual:** 1.0.0  
+**Data do Último Update:** 2026-03-24
