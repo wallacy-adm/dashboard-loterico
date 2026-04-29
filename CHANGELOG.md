@@ -7,6 +7,21 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [1.2.0] - 2026-04-29
+
+### 🧹 Organização do Repositório
+- **Removido** `dashboard-COMPLETO-OTIMIZADO.html` — havia cópia idêntica desnecessária
+- **Removido** `projeto-completo/` — pasta duplicata de todo o conteúdo da raiz
+- **Removido** `projeto-completo.zip` — binário não deve ser versionado
+- **Removido** `README (1).md` — arquivo com nome inválido (espaço + parêntese)
+- **Criado** `.gitignore` — planilhas `.xlsx`, `.zip` e arquivos de sistema ignorados
+- **Criado** `docs/` — documentação centralizada em pasta dedicada
+- **Movido** todos os `.md` de documentação para `docs/`
+- **Atualizado** `CLAUDE.md` — removido workflow obsoleto de `cp` entre arquivos, paths corrigidos
+- **Atualizado** `README.md` — estrutura reflete repositório real
+
+---
+
 ## [1.1.0] - 2026-03-31
 
 ### ✨ Adicionado

@@ -2,7 +2,7 @@
 
 > Sistema completo para análise de vendas e despesas a partir de planilhas Excel, com visualizações interativas e filtros dinâmicos.
 
-[![Versão](https://img.shields.io/badge/versão-1.1.0-blue.svg)](CHANGELOG.md)
+[![Versão](https://img.shields.io/badge/versão-1.2.0-blue.svg)](CHANGELOG.md)
 [![Licença](https://img.shields.io/badge/licença-MIT-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-ativo-success.svg)]()
 
@@ -38,26 +38,23 @@ Um dashboard gerencial completo, construído em HTML/JavaScript puro, que proces
 ## 📋 Estrutura do Projeto
 
 ```
-projeto/
-├── 📄 dashboard.html                    # 🎯 ARQUIVO PRINCIPAL (use este!)
-├── 📄 dashboard-COMPLETO-OTIMIZADO.html # Cópia de trabalho (idêntica)
-├── 📄 README.md                         # Este arquivo
-├── 📄 CLAUDE.md                         # 🤖 Instruções para Claude Code
-├── 📄 CHANGELOG.md                      # Histórico de versões
-├── 📄 LICENSE                           # Licença MIT
+dashboard-loterico/
+├── 📄 dashboard.html          # 🎯 ARQUIVO PRINCIPAL — abra no navegador
+├── 📄 README.md               # Este arquivo
+├── 📄 CLAUDE.md               # 🤖 Instruções para Claude Code
+├── 📄 CHANGELOG.md            # Histórico de versões
+├── 📄 LICENSE                 # Licença MIT
+├── 📄 .gitignore              # Arquivos ignorados pelo git
 │
-├── 📁 docs/                             # Documentação detalhada
-│   ├── ARCHITECTURE.md                  # Decisões técnicas
-│   ├── DEVELOPMENT.md                   # Guia de desenvolvimento
-│   ├── BUSINESS-RULES.md                # Regras de negócio
-│   ├── DATA-STRUCTURE.md                # Estrutura das planilhas
-│   ├── CONTEXT.md                       # Contexto histórico
-│   ├── INSTALACAO.md                    # Como instalar/usar
-│   ├── FUNCIONALIDADES.md               # Detalhes das abas
-│   └── PROMPTS-CLAUDE-CODE.md           # Templates de prompts
-│
-└── 📁 exemplos/                         # Planilhas de exemplo
-    └── README.md                        # Estrutura dos exemplos
+└── 📁 docs/                   # Documentação detalhada
+    ├── DEVELOPMENT.md         # Guia de desenvolvimento
+    ├── BUSINESS-RULES.md      # Regras de negócio
+    ├── DATA-STRUCTURE.md      # Estrutura das planilhas Excel
+    ├── CONTEXT.md             # Contexto histórico do projeto
+    ├── INSTALACAO.md          # Como instalar e usar
+    ├── FUNCIONALIDADES.md     # Detalhes das funcionalidades
+    ├── COMO-PUBLICAR.md       # Como publicar atualizações
+    └── PROMPTS-CLAUDE-CODE.md # Templates de prompts para Claude
 ```
 
 ---
@@ -123,22 +120,22 @@ Este projeto é mantido com auxílio do **Claude (Anthropic)**.
 
 ### Padrões de Desenvolvimento
 
-- ✅ **Edições cirúrgicas** (use `str_replace`, não reescreva tudo)
-- ✅ **Sincronizar arquivos** após cada mudança
-- ✅ **Atualizar documentação** sempre
+- ✅ **Edições cirúrgicas** em `dashboard.html` (use `str_replace`, não reescreva tudo)
+- ✅ **Atualizar documentação** sempre (CHANGELOG.md obrigatório)
 - ✅ **Mostrar preview** antes de mudanças visuais
 
 ---
 
 ## 📈 Versão Atual
 
-**v1.1.0** (28/04/2026)
+**v1.2.0** (29/04/2026)
 
 ### Novidades Recentes
-- ✨ Filtro dinâmico de pontos
-- ✨ Toggle "Mostrar Todos os Pontos"
-- ✨ Gráfico Misto (Barras + Linha Total)
-- 🔧 Melhorias de UX na aba Evolução
+- 🧹 Repositório reorganizado — estrutura limpa e sem duplicatas
+- 📁 Documentação centralizada em `docs/`
+- ✅ `.gitignore` adicionado
+- 🔧 CLAUDE.md atualizado com workflows corretos
+- ✨ v1.1.0: Filtro dinâmico de pontos, Toggle de pontos, Gráfico Misto
 
 📜 [Ver histórico completo](CHANGELOG.md)
 

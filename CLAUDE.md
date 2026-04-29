@@ -40,10 +40,8 @@ Sistema HTML/JavaScript single-page para análise de dados de vendas e despesas 
 - ExcelJS (leitura de planilhas)
 - Processamento 100% client-side (sem backend)
 
-**Arquivos principais:**
-- `dashboard.html` - Versão para GitHub (uso final)
-- `dashboard-COMPLETO-OTIMIZADO.html` - Versão de trabalho (idêntica)
-- **IMPORTANTE:** Sempre sincronizar com `cp dashboard-COMPLETO-OTIMIZADO.html dashboard.html`
+**Arquivo principal:**
+- `dashboard.html` - Arquivo único do projeto (editar direto aqui)
 
 ---
 
@@ -145,7 +143,6 @@ Zero (0)      = ⚪ Cinza
 - Use `grep` para localizar linha exata
 - Use `view` para ver contexto (~60 linhas)
 - Use `str_replace` com contexto suficiente
-- Sincronize: `cp dashboard-COMPLETO-OTIMIZADO.html dashboard.html`
 
 **NUNCA faça:**
 - ❌ Reescrever o arquivo inteiro
@@ -157,24 +154,21 @@ Zero (0)      = ⚪ Cinza
 
 ```bash
 # 1. Localizar função
-grep -n "function nomeDaFuncao" dashboard-COMPLETO-OTIMIZADO.html
+grep -n "function nomeDaFuncao" dashboard.html
 
 # 2. Ver contexto (linha encontrada ± 30)
-view dashboard-COMPLETO-OTIMIZADO.html [linha-30, linha+30]
+view dashboard.html [linha-30, linha+30]
 
 # 3. Editar cirurgicamente
 str_replace com contexto suficiente
 
-# 4. Sincronizar arquivos
-cp dashboard-COMPLETO-OTIMIZADO.html dashboard.html
-
-# 5. Atualizar CHANGELOG.md (sempre!)
+# 4. Atualizar CHANGELOG.md (sempre!)
 ```
 
 ### **Estrutura do Código:**
 
 ```
-dashboard-COMPLETO-OTIMIZADO.html
+dashboard.html
 ├── Linha 1-100:    HTML base + Tailwind + CDNs
 ├── Linha 100-200:  State e configurações iniciais
 ├── Linha 200-700:  Processamento de dados (Excel)
@@ -299,32 +293,27 @@ const corTotal = '#7c3aed'; // Roxo escuro tracejado
 ### **Tarefa: Corrigir Bug**
 ```
 1. Reproduzir o bug (entender)
-2. grep para localizar código relevante
+2. grep para localizar código relevante no dashboard.html
 3. view contexto completo (~60 linhas)
 4. str_replace cirúrgico
-5. Sincronizar arquivos (cp)
-6. Atualizar CHANGELOG.md
-7. Testar mentalmente
+5. Atualizar CHANGELOG.md
+6. Testar mentalmente
 ```
 
 ### **Tarefa: Adicionar Feature**
 ```
 1. Entender requisito (perguntar se necessário)
 2. Mostrar mockup visual ANTES (visualize:show_widget)
-3. Aguardar aprovação do Wallacy
-4. Implementar cirurgicamente
-5. Sincronizar arquivos
-6. Atualizar CHANGELOG.md (incrementar versão)
-7. Atualizar este CLAUDE.md se necessário
+3. Implementar cirurgicamente no dashboard.html
+4. Atualizar CHANGELOG.md (incrementar versão)
+5. Atualizar este CLAUDE.md se necessário
 ```
 
 ### **Tarefa: Modificar Visual**
 ```
 1. SEMPRE mostrar preview ANTES (visualize:show_widget)
 2. Usar cores hardcoded (hex), não CSS variables
-3. Aguardar aprovação
-4. Implementar
-5. Sincronizar
+3. Implementar no dashboard.html
 ```
 
 ### **Tarefa: Refatoração**
@@ -377,10 +366,9 @@ Quando o Wallacy pedir algo:
 2. **Leia o CHANGELOG.md** para ver histórico recente
 3. **Confirme entendimento** antes de executar (se complexo)
 4. **Mostre preview visual** se for mudança de UI
-5. **Faça edições cirúrgicas** (nunca reescreva tudo)
-6. **Sincronize arquivos** após cada modificação
-7. **Atualize documentação** (CHANGELOG.md sempre)
-8. **Reporte status claro** ao final
+5. **Faça edições cirúrgicas em `dashboard.html`** (nunca reescreva tudo)
+6. **Atualize documentação** (CHANGELOG.md sempre)
+7. **Reporte status claro** ao final
 
 ### **Comunicação com Wallacy:**
 - Português BR
@@ -398,15 +386,17 @@ Para mais detalhes, consulte:
 
 - `README.md` - Visão geral do projeto
 - `CHANGELOG.md` - Histórico de versões
-- `docs/ARCHITECTURE.md` - Decisões técnicas detalhadas
 - `docs/DEVELOPMENT.md` - Guia de desenvolvimento
 - `docs/BUSINESS-RULES.md` - Regras de negócio detalhadas
 - `docs/DATA-STRUCTURE.md` - Estrutura das planilhas
 - `docs/CONTEXT.md` - Contexto histórico do projeto
+- `docs/FUNCIONALIDADES.md` - Funcionalidades detalhadas
+- `docs/INSTALACAO.md` - Instruções de instalação/uso
+- `docs/COMO-PUBLICAR.md` - Como publicar atualizações
 - `docs/PROMPTS-CLAUDE-CODE.md` - Templates de prompts úteis
 
 ---
 
-**Última atualização:** 2026-04-28 (v1.1.0)
+**Última atualização:** 2026-04-29 (v1.2.0)
 
 **Mantenedor:** Wallacy + Claude (Anthropic)

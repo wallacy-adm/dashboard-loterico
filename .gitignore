@@ -1,0 +1,29 @@
+# Planilhas com dados reais (nunca versionar)
+*.xlsx
+*.xls
+*.csv
+
+# Arquivos compactados
+*.zip
+*.rar
+*.7z
+*.tar.gz
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (caso seja usado futuramente)
+node_modules/
+npm-debug.log*
+
+# Ambiente local
+.env
+.env.local
